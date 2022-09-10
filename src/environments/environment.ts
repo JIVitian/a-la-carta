@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  endpoint: 'https://api.spoonacular.com/recipes/complexSearch',
 };
 
 /*
