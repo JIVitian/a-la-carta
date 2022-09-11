@@ -10,7 +10,7 @@
       (ngSubmit)="onSubmit()"
     >
       <!-- Email input -->
-      <div class="form-outline mb-4">
+      <div class="form-outline mb-4 text-start">
         <input
           type="email"
           id="form2Example1"
@@ -19,10 +19,16 @@
           formControlName="email"
           [class.is-invalid]="email.invalid && email.touched"
         />
+        <span
+          class="invalid-feedback"
+          *ngIf="email.invalid && email.touched"
+        >
+          Ingrese un email valido.
+        </span>
       </div>
 
       <!-- Password input -->
-      <div class="form-outline mb-4">
+      <div class="form-outline mb-4 text-start">
         <input
           type="password"
           id="form2Example2"
@@ -31,10 +37,21 @@
           formControlName="password"
           [class.is-invalid]="password.invalid && password.touched"
         />
+        <span
+          class="invalid-feedback"
+          *ngIf="password.invalid && password.touched"
+        >
+          La contaseña es requerida.
+        </span>
       </div>
 
       <!-- Submit button -->
-      <button class="btn btn-primary btn-block mb-4">Sign in</button>
+      <button
+        class="btn btn-primary btn-block mb-4"
+        [disabled]="submitted"
+      >
+        Enviar
+      </button>
     </form>
   </section>
 </main>
