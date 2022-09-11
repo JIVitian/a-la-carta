@@ -33,21 +33,20 @@ export class LoginComponent {
   constructor(private loginService: LoginService) {}
 
   onSubmit(): void {
+    if (!this.loginForm.valid) return;
+
     this.submitted = true;
 
-    if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
-      this.loginService
-        .login(this.loginForm.value.email, this.loginForm.value.password)
-        .subscribe({
-          next: result => console.log(result.token),
-          error: () => this.errorSwal.fire(),
-        });
+    const { email, password } = this.loginForm.value;
 
-      this.submitted = false;
-    } else {
-      console.log('invalid form');
-      this.submitted = false;
-    }
+    this.loginService.login(email, password).subscribe({
+      next: ({ token }) => {
+        localStorage.setItem('token', token);
+      },
+      error: () => {
+        this.submitted = false;
+        this.errorSwal.fire();
+      },
+    });
   }
 }
