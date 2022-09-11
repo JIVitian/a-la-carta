@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { LoginService } from './login.service';
 
 @Component({
@@ -26,6 +27,9 @@ export class LoginComponent {
 
   submitted: boolean = false;
 
+  @ViewChild('errorSwal')
+  public readonly errorSwal: SwalComponent;
+
   constructor(private loginService: LoginService) {}
 
   onSubmit(): void {
@@ -37,7 +41,7 @@ export class LoginComponent {
         .login(this.loginForm.value.email, this.loginForm.value.password)
         .subscribe({
           next: result => console.log(result.token),
-          error: error => console.log(error.error.error),
+          error: () => this.errorSwal.fire(),
         });
 
       this.submitted = false;
