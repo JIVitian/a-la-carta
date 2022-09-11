@@ -1,21 +1,40 @@
-<main class="text-center d-flex row justify-content-center align-items-center vh-100 vw-100">
+<main
+  class="text-center d-flex row justify-content-center align-items-center vh-100 vw-100"
+>
   <section>
     <h2 class="fw-bold">Sign in</h2>
 
-    <form class="w-25 m-auto mt-5 pb-5">
+    <form
+      class="w-25 m-auto mt-5 pb-5"
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+    >
       <!-- Email input -->
       <div class="form-outline mb-4">
-        <input type="email" id="form2Example1" class="form-control" placeholder="Email" />
+        <input
+          type="email"
+          id="form2Example1"
+          class="form-control"
+          placeholder="Email"
+          formControlName="email"
+          [class.is-invalid]="email.invalid && email.touched"
+        />
       </div>
 
       <!-- Password input -->
       <div class="form-outline mb-4">
-        <input type="password" id="form2Example2" class="form-control" placeholder="Password" />
+        <input
+          type="password"
+          id="form2Example2"
+          class="form-control"
+          placeholder="Password"
+          formControlName="password"
+          [class.is-invalid]="password.invalid && password.touched"
+        />
       </div>
 
       <!-- Submit button -->
-      <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+      <button class="btn btn-primary btn-block mb-4">Sign in</button>
     </form>
-
   </section>
 </main>
