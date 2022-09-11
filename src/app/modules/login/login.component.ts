@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { LoginService } from './login.service';
 
@@ -30,7 +31,7 @@ export class LoginComponent {
   @ViewChild('errorSwal')
   public readonly errorSwal: SwalComponent;
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   onSubmit(): void {
     if (!this.loginForm.valid) return;
@@ -42,6 +43,7 @@ export class LoginComponent {
     this.loginService.login(email, password).subscribe({
       next: ({ token }) => {
         localStorage.setItem('token', token);
+        this.router.navigate(['/home']);
       },
       error: () => {
         this.submitted = false;
