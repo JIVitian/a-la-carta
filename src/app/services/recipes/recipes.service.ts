@@ -19,6 +19,6 @@ export class RecipesService {
   constructor(private httpClient: HttpClient) {}
 
   getRecipes() {
-    return this.httpClient.get<RecipesResponse>(this.endpoint);
+    return this.httpClient.get<RecipesResponse>(this.endpoint + '&addRecipeInformation=true&addRecipeNutrition=true');
   }
 }
