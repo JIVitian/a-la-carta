@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-// import { RecipesService } from 'src/app/services/recipes/recipes.service';
+import { Recipe } from 'src/app/models/recipe';
+import { RecipesService } from 'src/app/services/recipes/recipes.service';
 
 @Component({
   selector: 'app-home',
@@ -8,14 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  recipe: Recipe = {
+    id: 1,
+    title: 'Pizza con anana y mucha aceituna',
+    image: 'https://spoonacular.com/recipeImages/716429-556x370.jpg',
+    price: 10,
+    preparationTime: 30,
+    healthScore: 100,
+    vegan: true
+  };
+
   constructor(
-    // private recipesService: RecipesService
+    private recipesService: RecipesService
   ) { }
 
   ngOnInit(): void {
-    // this.recipesService.getRecipes().subscribe((response) => {
-    //   console.log(response);
-    // });
+    this.recipesService.getRecipes().subscribe((response) => {
+      console.log(response);
+    });
   }
 
 }
