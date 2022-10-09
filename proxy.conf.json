@@ -1,0 +1,8 @@
+{
+  "/recipes/complexSearch": {
+    "target": "https://api.spoonacular.com",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
