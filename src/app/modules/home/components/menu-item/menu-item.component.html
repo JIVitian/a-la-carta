@@ -1,0 +1,75 @@
+<!--
+Información de un plato del menú:
+  ● Nombre del plato.
+  ● Imagen.
+  ● Características del plato.
+  ● Acciones para ver el detalle o eliminarlo del menú.
+
+Modelo de la receta:
+Recipe {
+  id?: number;
+  title: string; -> A mostrar
+  image: string; -> A mostrar
+  price: number;
+  preparationTime: number;
+  healthScore: number;
+  vegan: boolean;
+}
+
+Detalle a mostrar:
+Precio
+Tiempo de preparacion
+Health score
+Vegan?
+-->
+
+<article class="card h-100 shadow-sm">
+  <section class="d-flex h-75 p-2">
+    <figure class="col-4 d-flex align-items-center mb-0">
+      <img
+        class="card-img"
+        [src]="recipe.image"
+        [alt]="recipe.title"
+      />
+    </figure>
+    <section class="card-body col-8 p-0 ps-2 d-flex flex-row flex-wrap justify-content-between">
+      <h6 class="card-title w-100">{{ recipe.title }}</h6>
+      <span
+        title="Este plato es vegano!"
+        class="w-25 mt-auto text-center text-success"
+        *ngIf="recipe.vegan"
+      >
+        <fa-icon [icon]="faLeaf"></fa-icon>
+      </span>
+      <h6 class="text-end mb-0 mt-auto">{{ recipe.price | currency }}</h6>
+    </section>
+  </section>
+  <section class="card-footer p-2 d-flex justify-content-between">
+    <div class="d-flex">
+      <span
+        title="Tiempo de preparación"
+        class="d-flex flex-column icon-container align-items-center mx-1"
+      >
+        <fa-icon
+          class="icon"
+          [icon]="faClock"
+        ></fa-icon>
+        {{ recipe.preparationTime }}'
+      </span>
+      <span
+        title="Puntaje de salud"
+        class="d-flex flex-column icon-container align-items-center mx-1"
+      >
+        <fa-icon
+          class="icon"
+          [icon]="faHeart"
+        ></fa-icon>
+        {{ recipe.healthScore }}
+      </span>
+    </div>
+    <div>
+      <button class="btn btn-primary">Detalle</button>
+      <button class="btn btn-danger ms-2">Eliminar</button>
+    </div>
+  </section>
+</article>

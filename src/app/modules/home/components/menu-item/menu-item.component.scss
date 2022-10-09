@@ -1,0 +1,13 @@
+.card-title {
+  // 2 lines + line-height
+  max-height: calc(2rem * 1.2);
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.icon-container {
+  color: gray;
+  font-size: 0.75rem;
+}
